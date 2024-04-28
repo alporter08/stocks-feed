@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "stocks-feed"
+version = "0.1.0"
+description = "Pipeline for pulling, storing and visualizing stock prices and derived metrics."
+authors = ["Adrien Porter <adrien.porter@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
