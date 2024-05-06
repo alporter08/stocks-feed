@@ -47,8 +47,9 @@ class Index:
 
     API_KEY = os.getenv("FRED_API_KEY")
 
-    def __init__(self):
+    def __init__(self, index_name="SP500"):
         self.df = self.make_index_df()
+        self.index_name = index_name
 
     def get_daily_index_prices(self):
         try:
