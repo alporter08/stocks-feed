@@ -1,10 +1,28 @@
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
-from stocks_feed.dataloader import Stock, Index
 
 
 class Risk:
+    """Computes various risk metrics for a stock.
+
+    The class performs OLS regression on a Stock and Index to obtain estimates for
+    alpha, beta and epsilon based on the equation r = alpha + beta * m + eps.
+
+    Attributes:
+        stock: A Stock object that contains a ticker, a start date, end date and
+        dataframe of daily returns.
+        index: An Index object that contains an index_name and a dataframe of daily
+        returns.
+        ols_results: statsmodels.regression.linear_model.RegressionResultsWrapper
+        X: Daily index returns with constant for regression.
+        y: Daily stock returns with constant for regression.
+        risk_params: Dictionary containing alpha, beta, daily market volatility (%)
+        and daily idiosyncratic volatility (%)
+        single_stock_vols: Market volatility, Idiosyncratic volatility and Total
+        volatility components for a position of X Net Market Value.
+    """
+
     def __init__(self, stock, index, nmv=10_000_000):
         self.stock = stock
         self.index = index
