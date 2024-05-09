@@ -24,6 +24,15 @@ class Risk:
     """
 
     def __init__(self, stock, index, nmv=10_000_000):
+        """Initializes the instance based on the stock and the index.
+        Defaults to a Net Market Value of $10m for the volatility
+        calculations.
+
+        Args:
+          stock: The stock on which the risk analysis will be performed.
+          index: The benchmark index.
+          nmv: The Net Market Value of the the asset.
+        """
         self.stock = stock
         self.index = index
         self.ols_results, self.X, self.y = self.ols()
