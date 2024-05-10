@@ -40,6 +40,7 @@ class Risk:
         self.single_stock_vols = self.get_single_stock_vol(nmv)
 
     def concat_series(self):
+        """Returns a dataframe consisting of stock and index dataframes."""
         stock_returns = self.stock.df["daily_return"]
         index_returns = self.index.df["daily_return"]
         df = pd.concat([stock_returns, index_returns], axis=1).dropna()
@@ -48,6 +49,8 @@ class Risk:
         return df
 
     def ols(self):
+        """Performs OLS regression on stock and index and returns OLS results object
+        along with X and y series."""
         df = self.concat_series()
         y = df[self.stock.ticker]
         X = df[self.index.index_name]
@@ -56,6 +59,7 @@ class Risk:
         return results, X, y
 
     def ols_summary(self):
+        """Prints the OLS results summary."""
         print(self.ols_results.summary())
 
     def get_risk_params(self):
