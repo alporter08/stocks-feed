@@ -78,6 +78,8 @@ class Risk:
         return risk_params
 
     def get_single_stock_vol(self, nmv=10_000_000):
+        """Gets the market, idiosyncratic and total dollar volatility breakdown for a
+        single stock."""
         market_vol = (
             self.risk_params["beta"]
             * self.risk_params["daily_mkt_vol_perc"]
