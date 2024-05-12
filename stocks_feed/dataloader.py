@@ -17,6 +17,7 @@ class Stock:
         self.df = self.make_stock_df()
 
     def get_daily_stock_prices(self):
+        """Returns daily stock price json for a given ticker between start and end date"""
         try:
             url = f"https://api.polygon.io/v2/aggs/ticker/{self.ticker}/range/1/day/{self.start_date}/{self.end_date}?sort=asc&apiKey={Stock.API_KEY}"
             r = requests.get(url)
