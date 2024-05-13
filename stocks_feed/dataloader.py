@@ -38,6 +38,7 @@ class Stock:
         return df
 
     def get_daily_return(self, df):
+        """Returns a dataframe with a column containing daily returns."""
         df["close_lag_1"] = df["c"].shift(periods=1)
         df["daily_return"] = (df["c"] / df["close_lag_1"]) - 1
         return df
