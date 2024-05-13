@@ -5,6 +5,7 @@ description = "Pipeline for pulling, storing and visualizing stock prices and de
 authors = ["Adrien Porter <adrien.porter@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "stocks_feed"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
