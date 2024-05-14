@@ -11,8 +11,10 @@ def lambda_handler(event, context):
     # Get the length and width parameters from the event object. The
     # runtime converts the event object to a Python dictionary
 
+    logger.info(f"Event: {event}")
+
     ticker = event["ticker"]
-    start_date = event["width"]
+    start_date = event["start_date"]
     end_date = event["end_date"]
 
     s = Stock(ticker, start_date, end_date)
@@ -20,6 +22,4 @@ def lambda_handler(event, context):
 
     logger.info(f"CloudWatch logs group: {context.log_group_name}")
 
-    # return the calculated area as a JSON string
-    # data = {"area": area}
     return json.dumps(data)
