@@ -3,12 +3,6 @@ FROM public.ecr.aws/lambda/python:3.10
 ENV POETRY_VERSION=1.7.1
 RUN pip install "poetry==$POETRY_VERSION"
 
-# Copy requirements.txt
-# COPY requirements.txt ${LAMBDA_TASK_ROOT}
-
-# Install the specified packages
-# RUN pip install -r requirements.txt
-
 WORKDIR ${LAMBDA_TASK_ROOT}
 
 COPY /poetry.lock ${LAMBDA_TASK_ROOT}
