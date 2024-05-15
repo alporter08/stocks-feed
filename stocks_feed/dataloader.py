@@ -20,7 +20,7 @@ class Stock:
         """Returns daily stock price json for a given ticker between start and end date"""
         try:
             url = f"https://api.polygon.io/v2/aggs/ticker/{self.ticker}/range/1/day/{self.start_date}/{self.end_date}?sort=asc&apiKey={Stock.API_KEY}"
-            r = requests.get(url)
+            r = requests.get(url, timeout=60)
             data = r.json()
             return data
         except:
@@ -56,7 +56,7 @@ class Index:
     def get_daily_index_prices(self):
         try:
             url = f"https://api.stlouisfed.org/fred/series/observations?series_id=SP500&api_key={Index.API_KEY}&file_type=json"
-            r = requests.get(url)
+            r = requests.get(url, timeout=60)
             data = r.json()
             return data
         except:
