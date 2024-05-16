@@ -8,7 +8,7 @@ class Plot:
 
     @staticmethod
     def plot_timeseries(x, y, x_label, ylabel, title):
-        fig, ax = plt.subplots(figsize=(12, 6))
+        _, ax = plt.subplots(figsize=(12, 6))
 
         # Plot the data
         ax.plot(x, y)
