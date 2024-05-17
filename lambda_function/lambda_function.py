@@ -16,7 +16,7 @@ def lambda_handler(event, context):
     logger.info(f"Event: {event}")
 
     if "POLYGON_API_KEY" not in os.environ:
-        logger.info(f"Setting POLYGON_API_KEY env variable.")
+        logger.info("Setting POLYGON_API_KEY env variable.")
         os.environ["POLYGON_API_KEY"] = get_secret()
 
     ticker = event["ticker"]
