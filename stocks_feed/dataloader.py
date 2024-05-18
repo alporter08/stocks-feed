@@ -54,6 +54,7 @@ class Index:
         self.index_name = index_name
 
     def get_daily_index_prices(self):
+        """Returns daily index price json for the SP500 from FRED."""
         try:
             url = f"https://api.stlouisfed.org/fred/series/observations?series_id=SP500&api_key={Index.API_KEY}&file_type=json"
             r = requests.get(url, timeout=60)
