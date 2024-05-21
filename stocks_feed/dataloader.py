@@ -1,12 +1,20 @@
 import os
 import requests
 import pandas as pd
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 class Stock:
     """Get stock data"""
 
     API_KEY = os.getenv("POLYGON_API_KEY")
+    if API_KEY is None:
+        raise ValueError(
+            "API KEY is None. Environment variable may not have been properly set."
+        )
 
     def __init__(self, ticker, start_date, end_date):
         if not isinstance(ticker, str):
@@ -48,6 +56,10 @@ class Index:
     """Get index data"""
 
     API_KEY = os.getenv("FRED_API_KEY")
+    if API_KEY is None:  # TODO: refactor this
+        raise ValueError(
+            "API KEY is None. Environment variable may not have been properly set."
+        )
 
     def __init__(self, index_name="SP500"):
         self.df = self.make_index_df()
