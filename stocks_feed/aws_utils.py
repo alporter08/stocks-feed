@@ -8,10 +8,7 @@ import boto3
 from botocore.exceptions import ClientError
 
 
-def get_secret():
-
-    secret_name = "prod/stocks_feed/polygon_api_key"
-    region_name = "us-east-1"
+def get_secret(secret_name, region_name="us-east-1"):
 
     # Create a Secrets Manager client
     session = boto3.session.Session()
@@ -25,7 +22,7 @@ def get_secret():
         raise e
 
     secret = get_secret_value_response["SecretString"]
-    secret = json.loads(secret)["POLYGON_API_KEY"]
+    secret = json.loads(secret)
 
     # Your code goes here.
     return secret

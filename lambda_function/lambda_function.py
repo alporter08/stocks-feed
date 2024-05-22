@@ -1,7 +1,7 @@
 import os
 import json
 import logging
-from stocks_feed.dataloader import Stock
+
 from stocks_feed.aws_utils import get_secret
 
 logger = logging.getLogger()
@@ -17,7 +17,17 @@ def lambda_handler(event, context):
 
     if "POLYGON_API_KEY" not in os.environ:
         logger.info("Setting POLYGON_API_KEY env variable.")
-        os.environ["POLYGON_API_KEY"] = get_secret()
+        os.environ["POLYGON_API_KEY"] = get_secret("prod/stocks_feed/polygon_api_key")[
+            "POLYGON_API_KEY"
+        ]
+
+    if "FRED_API_KEY" not in os.environ:
+        logger.info("Setting FRED_API_KEY env variable.")
+        os.environ["FRED_API_KEY"] = get_secret("prod/stocks_feed/fred_api_key")[
+            "FRED_API_KEY"
+        ]
+
+    from stocks_feed.dataloader import Stock
 
     ticker = event["ticker"]
     start_date = event["start_date"]
